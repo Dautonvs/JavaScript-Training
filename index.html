@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Training</title>
+	<h1>Treinamento JavaScript</h1>
+</head>
+
+<body>
+	<h2>Uso do método map() em diferentes formas!</h2>
+	<p id="demo"></p>
+	
+	<h3>Exemplo map() 01 -  Modo Simples</h3>
+	
+	<script>
+		//Define a função call-back
+		function AreaDoCirculo(raio){
+		var area = Math.PI * (raio * raio);
+		return area.toFixed(0);
+		}
+		//Cria um array
+		var raio2 = [10,20,30];
+		//Obtem a area da variavel raio2
+		var areas = raio2.map(AreaDoCirculo);
+
+		document.write(areas);
+		//O output deve ser:
+		//314, 1257, 2827
+	</script>
+	
+	<h3>Exemplo map() 02 - Utilzando a palavra reservada this que especifica um elemento</h3>
+	
+	<script>
+		// Define um objeto que contem uma propriedade divisor e uma função restoDivisao
+		var obj = {
+								divisor : 10,
+								restoDivisao: function(val){
+								return val % this.divisor;
+								}
+							}
+
+		// Cria um array
+		var nums = [6, 12, 25, 30];
+
+		//Obtem o restoDivisao
+		// O argumento do obj especifica o valor this na função callback
+		var resultado = nums.map(obj.restoDivisao, obj);
+		document.write(resultado);
+
+		//Output deve ser:
+		// 6,2,5,0  
+ 	</script>
+
+ 	<h3>Exemplo map() 03 -  Usando um método interno para retorno de chamada</h3>
+
+ 	<script>
+ 		//Aplica a função Math.sqrt(valor) para obter a raiz quadrada de cada elemento de um arrau
+ 		var nums = [9,16];
+ 		var resultado = nums.map(Math.sqrt);
+
+ 		document.write(resultado);
+
+ 		//Output deve ser:
+ 		// 3,4 
+ 	</script>
+
+ 	<h3>Exemplo map() 04 - Numa cadeia de caracteres</h3>
+
+ 	<script>
+ 		//Define uma função callback.
+ 		function tresChars(valor, indice, string){
+ 					// Cria uma string que contem o char anterior, atual e o proximo.
+ 					return string.substring(indice - 1, indice +2);
+ 		}
+
+ 		//Cria uma string
+ 		var palavra = "Tricolor";
+
+ 		//Aplica o método map() na string que tem o anterior, atual, e proximo caractere.
+ 		var resultado = [].map.call(palavra, tresChars);
+ 						//Outra alternativa seria: var resultado = Array.prototype.map.call(palavra, tresChars);
+
+ 		document.write(resultado)				;
+
+ 		//Output de ver:
+ 		//Tr,Tri,ric,ico,col,olo,lor,or
+
+ 	</script>
+
+</body>
+</html>
